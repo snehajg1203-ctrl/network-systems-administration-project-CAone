@@ -30,8 +30,12 @@ resource "aws_security_group" "key_security_group" {
         cidr_blocks = ["0.0.0.0/0"]//allow all outgoing traffic
     } 
 }
+variable "key_name"{
+    type = string
+    default = "sa_key"
+}
 resource "aws_key_pair" "sshkey" {
-    key_name = "sshkey"
+    key_name = var.key_name
     public_key = file("sa.pub")
   
 }
